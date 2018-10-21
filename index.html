@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>flatWorldEdit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <script src="main.js" charset="utf-8"></script>
+</head>
+<body class="body">    
+<div align="center">
+<br>
+<div class="BodyBox">
+<h3>
+    *このツールは現在サポートしていません。
+    （BEにカスタムフラットが追加されるとか聞いたので）<br>
+    chromeのみ動作を確認しています。safariでは動きません<br>
+    このサイトはlevel.datを生成します。<br>
+    生成したものはご自由にどうぞ<br><br>
+    <div class="text">
+    使い方<br>
+    1.<a href="javascript:download()">ここ</a>からファイルをダウンロードし解凍<br>
+    2.level.datを生成したものに置き換える<br>
+    3.minecraftにインポート
+</div>
+</h3>
+<div class="BodyBox">
+    <h1>Enter Block ID</h1>
+    <a href="https://minecraft-ids.grahamedgecombe.com" class="url" target="_blank">Minecraft ID list <i class="fas fa-external-link-alt"></i></a>
+    <br>
+<form name="select">
+    <font size="1px" > 層は上から数えています<br>高さは99まで指定できますが深くすれ <br> ばするほど生成時に負荷がかかります。</font>
+    <h3>
+    1層目 <input type="text" name="blcokID3" id="blockID3" style="width:100px" class="textbox"></input>高さ<input type="text" name="higth3" id="higth3" style="width:70px" class="textbox"></input><br>
+    2層目 <input type="text" name="blcokID2" id="blockID2" style="width:100px" class="textbox"></input>高さ<input type="text" name="higth2" id="higth2" style="width:70px" class="textbox"></input><br>
+    3層目 <input type="text" name="blcokID" id="blockID" style="width:100px" class="textbox"></input>高さ<input type="text" name="higth" id="higth" style="width:70px" class="textbox"></input><br>
+    </h3>
+    <br>
+    <input type="button" value=ダウンロード style="width:200px" onclick="generator()" class="square_btn">
+</form>
+</div>
+<br>
+<a href="https://github.com/suinua/flatWorldEdit">github</a>
+
+<script>
+//参考
+//バイナリ
+//https://qiita.com/yaegaki/items/909587a2dae20467c74a
+//https://qiita.com/yaegaki/items/909587a2dae20467c74a
+//https://qiita.com/TypoScript/items/0d5b08cecf959b8b822c
+//ダウンロード
+//http://blog.fagai.net/2014/08/09/javascript-only-save/
+
+//最適化する気なし
+//js処女だからね。仕方ないね
+function hex(s) {
+  var result="";
+  for(var i=0;i<s.length;++i){
+    var h = ("0"+s.charCodeAt(i).toString(16)).substr(-2);
+    result += h;
+  }
+  return result;
+}
+function generator() {
+    
+
+function SystemGetExecutedInLittleEndian(){
+	if((new Uint8Array((new Uint16Array([0x00ff])).buffer))[0]) return true;
+	return false;
+}
+
+
+if(window.ArrayBuffer){
+
+	var little_endian  = true;
+	var pos = 0;
+	var ary_buffer = new ArrayBuffer(2560);
+    var blockID = document.select.blockID.value
+    var blockID2 = document.select.blockID2.value
+    var blockID3 = document.select.blockID3.value
+
+    var higth = document.select.higth.value
+    var higth2 = document.select.higth2.value
+    var higth3 = document.select.higth3.value 
+    
+
+var ary_u16 = new Uint16Array( ary_buffer , pos );
+var position = 0
+var nextHexChange = false
+var nextHexChangeOne = false
+var nextHexiGnore = false
+var list = ["0006", "0000", "0757", "0000", "000a", "0300", "000a", "6944", "6666", "6369", "6c75", "7974", "0000", "0000", "0f08", "4600", "616c", "5774", "726f", "646c", "614c", "6579", "7372", "017c", "0a7b", "2020", "2220", "6962", "6d6f", "5f65", "6469", "2022", "203a", "2c31", "200a", "2020", "6222", "6f6c", "6b63", "6c5f", "7961", "7265", "2273", "3a20", "5b20", "200a", "2020", "2020", "7b20", "200a", "2020", "2020", "2020", "2020", "6222", "6f6c", "6b63", "645f", "7461", "2261", "3a20", "3020", "0a2c", "2020", "2020", "2020", "2020", "2220", "6c62", "636f", "5f6b", "6469", "2022", "203a", "here1", "0a2c", "2020", "2020", "2020", "2020", "2220", "6f63", "6e75", "2274", "3a20", "higth1", "200a", "2020", "2020", "7d20", "0a2c", "2020", "2020", "2020", "0a7b", "2020", "2020", "2020", "2020", "2220", "6c62", "636f", "5f6b", "6164", "6174", "2022", "203a", "2c30", "200a", "2020", "2020", "2020", "2020", "6222", "6f6c", "6b63", "695f", "2264", "3a20", "2020", "here2", "0a2c", "2020", "2020", "2020", "2020", "6322", "756f", "746e", "2022", "203a", "0a20", "higth2", "2020", "2020", "2c7d", "200a", "2020", "2020", "7b20", "200a", "2020", "2020", "2020", "2020", "6222", "6f6c", "6b63", "645f", "7461", "2261", "3a20", "3020", "0a2c", "2020", "2020", "2020", "2020", "2220", "6c62", "636f", "5f6b", "6469", "2022", "203a", "here3", "0a2c", "2020", "2020", "2020", "2020", "2220", "6f63", "6e75", "2274", "3a20", "higth3", "200a", "2020", "2020", "7d20", "200a", "2020", "2c5d", "200a", "2020", "6522", "636e", "646f", "6e69", "5f67", "6576", "7372", "6f69", "226e", "3a20", "3320", "0a2c", "2020", "2220", "7473", "7572", "7463", "7275", "5f65", "706f", "6974", "6e6f", "2273", "3a20", "6e20", "6c75", "0a6c", "0a7d", "0d01", "4600", "726f", "6563", "6147", "656d", "7954", "6570", "0300", "0008", "6147", "656d", "7954", "6570", "0001", "0000", "0903", "4700", "6e65", "7265", "7461", "726f", "0002", "0000", "0c01", "4c00", "4e41", "7242", "616f", "6364", "7361", "0174", "0a04", "4c00", "7361", "5074", "616c", "6579", "6864", "e207", "0059", "0000", "0800", "0009", "654c", "6576", "4e6c", "6d61", "1365", "7300", "7075", "7265", "6c66", "7461", "6920", "6f72", "626e", "6f6c", "6b63", "1303", "4c00", "6d69", "7469", "6465", "6f57", "6c72", "4f64", "6972", "6967", "586e", "0018", "0000", "1303", "4c00", "6d69", "7469", "6465", "6f57", "6c72", "4f64", "6972", "6967", "596e", "7fff", "0000", "1303", "4c00", "6d69", "7469", "6465", "6f57", "6c72", "4f64", "6972", "6967", "5a6e", "0008", "0000", "0f01", "4d00", "6c75", "6974", "6c70", "7961", "7265", "6147", "656d", "0301", "000b", "654e", "6874", "7265", "6353", "6c61", "0865", "0000", "0300", "000e", "654e", "7774", "726f", "566b", "7265", "6973", "6e6f", "0089", "0000", "0803", "5000", "616c", "6674", "726f", "026d", "0000", "0100", "0011", "6c50", "7461", "6f66", "6d72", "7242", "616f", "6364", "7361", "0174", "0a04", "5200", "6e61", "6f64", "536d", "6565", "fa64", "bdfe", "0026", "0000", "0300", "0006", "7053", "7761", "586e", "0018", "0000", "0603", "5300", "6170", "6e77", "ff59", "007f", "0300", "0006", "7053", "7761", "5a6e", "0008", "0000", "0e03", "5300", "6f74", "6172", "6567", "6556", "7372", "6f69", "066e", "0000", "0400", "0004", "6954", "656d", "1997", "0000", "0000", "0000", "0c01", "5800", "4c42", "7242", "616f", "6364", "7361", "0174", "1003", "5800", "4c42", "7242", "616f", "6364", "7361", "4d74", "646f", "0365", "0000", "0a00", "0009", "6261", "6c69", "7469", "6569", "0173", "000a", "7461", "6174", "6b63", "6f6d", "7362", "0101", "000d", "7461", "6174", "6b63", "6c70", "7961", "7265", "0173", "0c01", "6200", "6975", "646c", "6e61", "6d64", "6e69", "0165", "1001", "6400", "6f6f", "7372", "6e61", "7364", "6977", "6374", "6568", "0173", "0805", "6600", "796c", "7053", "6565", "cd64", "4ccc", "013d", "0006", "6c66", "6979", "676e", "0100", "000a", "6e69", "7473", "6261", "6975", "646c", "0100", "000c", "6e69", "7576", "6e6c", "7265", "6261", "656c", "0100", "0009", "696c", "6867", "6e74", "6e69", "0067", "0601", "6d00", "7961", "6c66", "0079", "0201", "6f00", "0070", "0e01", "6f00", "6570", "636e", "6e6f", "6174", "6e69", "7265", "0173", "1003", "7000", "7265", "696d", "7373", "6f69", "736e", "654c", "6576", "006c", "0000", "0300", "0016", "6c70", "7961", "7265", "6550", "6d72", "7369", "6973", "6e6f", "4c73", "7665", "6c65", "0001", "0000", "0801", "7400", "6c65", "7065", "726f", "0074", "0905", "7700", "6c61", "536b", "6570", "6465", "cccd", "3dcc", "0100", "0011", "6f62", "756e", "4373", "6568", "7473", "6e45", "6261", "656c", "0064", "1101", "6200", "6e6f", "7375", "6843", "7365", "5374", "6170", "6e77", "6465", "0100", "0012", "6f63", "6d6d", "6e61", "6264", "6f6c", "6b63", "756f", "7074", "7475", "0101", "000f", "6f63", "6d6d", "6e61", "7364", "6e45", "6261", "656c", "0164", "0b04", "6300", "7275", "6572", "746e", "6954", "6b63", "586a", "0000", "0000", "0000", "0f01", "6400", "646f", "7961", "696c", "6867", "6374", "6379", "656c", "0101", "000d", "6f64", "6e65", "6974", "7974", "7264", "706f", "0173", "0a01", "6400", "666f", "7269", "7465", "6369", "016b", "0901", "6400", "6d6f", "626f", "6f6c", "746f", "0101", "000d", "6f64", "6f6d", "7362", "6170", "6e77", "6e69", "0067", "0b01", "6400", "746f", "6c69", "6465", "6f72", "7370", "0101", "000e", "6f64", "6577", "7461", "6568", "6372", "6379", "656c", "0101", "000e", "7264", "776f", "696e", "676e", "6164", "616d", "6567", "0101", "0008", "6465", "4c75", "7665", "6c65", "0100", "000a", "6166", "6c6c", "6164", "616d", "6567", "0101", "000a", "6966", "6572", "6164", "616d", "6567", "0a01", "000e", "6966", "6578", "4964", "766e", "6e65", "6f74", "7972", "1309", "6600", "7869", "6465", "6e49", "6576", "746e", "726f", "4979", "6574", "736d", "0000", "0000", "0000", "1701", "6800", "7361", "6542", "6e65", "6f4c", "6461", "6465", "6e49", "7243", "6165", "6974", "6576", "0101", "0015", "6168", "4c73", "636f", "656b", "4264", "6865", "7661", "6f69", "5072", "6361", "006b", "1501", "6800", "7361", "6f4c", "6b63", "6465", "6552", "6f73", "7275", "6563", "6150", "6b63", "0100", "000e", "6d69", "756d", "6174", "6c62", "5765", "726f", "646c", "0100", "0014", "7369", "7246", "6d6f", "6f4c", "6b63", "6465", "6554", "706d", "616c", "6574", "0100", "000d", "656b", "7065", "6e69", "6576", "746e", "726f", "0079", "1509", "6c00", "7361", "4f74", "6570", "656e", "5764", "7469", "5668", "7265", "6973", "6e6f", "0403", "0000", "0100", "0000", "0200", "0000", "0200", "0000", "0300", "0000", "0500", "000e", "696c", "6867", "6e74", "6e69", "4c67", "7665", "6c65", "0000", "0000", "0d03", "6c00", "6769", "7468", "696e", "676e", "6954", "656d", "1e9f", "0001", "0b01", "6d00", "626f", "7267", "6569", "6966", "676e", "0101", "0013", "616e", "7574", "6172", "726c", "6765", "6e65", "7265", "7461", "6f69", "016e", "0408", "7000", "6972", "0064", "0100", "0003", "7670", "0170", "0905", "7200", "6961", "4c6e", "7665", "6c65", "0000", "0000", "0803", "7200", "6961", "546e", "6d69", "1f65", "0063", "0100", "0013", "6573", "646e", "6f63", "6d6d", "6e61", "6664", "6565", "6264", "6361", "016b", "0f01", "7300", "6f68", "6377", "6f6f", "6472", "6e69", "7461", "7365", "0101", "0009", "7073", "7761", "4d6e", "626f", "0173", "1301", "7300", "6174", "7472", "6957", "6874", "614d", "4570", "616e", "6c62", "6465", "0100", "0014", "6574", "7478", "7275", "5065", "6361", "736b", "6552", "7571", "7269", "6465", "0100", "000b", "6e74", "6574", "7078", "6f6c", "6564", "0173", "0f04", "7700", "726f", "646c", "7453", "7261", "4374", "756f", "746e", "fffb", "ffff", "0000", "0000", "0000"]
+for (let i = 0; i < list.length; i++) {
+    if (list[i].match(/here1/)){
+        if(blockID.length == 1){
+            ary_u16[i+position] = '0x'+(list[i].replace(/here1/,'2c'+hex(blockID)));  
+            nextHexChangeOne = true
+        }else{
+        ary_u16[i+position] = '0x'+(list[i].replace(/here1/,hex(blockID.slice(1,2)+blockID.slice(0,1))));
+        
+        if (blockID.length > 2){
+            ary_u16[i+position+1] = '0x'+(list[i].replace(/here1/,'2c'+hex(blockID.slice(2,3))));
+            position += 1;
+            nextHexChange = true
+        }
+    }    
+    }else if(list[i].match(/here2/)){
+        if(blockID2.length == 1){
+            ary_u16[i+position] = '0x'+(list[i].replace(/here2/,'2c'+hex(blockID2)));  
+            nextHexChangeOne = true
+        }else{
+        ary_u16[i+position] = '0x'+(list[i].replace(/here2/,hex(blockID2.slice(1,2)+blockID2.slice(0,1))));
+        
+        if (blockID2.length > 2){
+            ary_u16[i+position+1] = '0x'+(list[i].replace(/here2/,'2c'+hex(blockID2.slice(2,3))));  
+            position += 1;
+            nextHexChange = true
+        }
+    }
+        
+    }else if(list[i].match(/here3/)){
+        if(blockID3.length == 1){
+            ary_u16[i+position] = '0x'+(list[i].replace(/here3/,'2c'+hex(blockID3)));  
+            nextHexChangeOne = true
+        }else{
+        ary_u16[i+position] = '0x'+(list[i].replace(/here3/,hex((blockID3.slice(1,2)+blockID3.slice(0,1)))));
+        
+        if (blockID3.length > 2){
+            ary_u16[i+position+1] = '0x'+(list[i].replace(/here3/,'2c'+hex(blockID3.slice(2,3))));     
+            position += 1;
+            nextHexChange = true
+        }
+    }
+    }else if(list[i].match(/higth1/)){
+        if(higth.length == 1){        
+            ary_u16[i+position] = '0x'+(list[i].replace(/higth1/,'20'+hex(higth))); 
+        }else{
+            ary_u16[i+position] = '0x'+(list[i].replace(/higth1/,hex((higth.slice(1,2)+higth.slice(0,1)))));            
+        }
+    }else if(list[i].match(/higth2/)){
+        if(higth2.length == 1){        
+            ary_u16[i+position] = '0x'+(list[i].replace(/higth2/,'20'+hex(higth2))); 
+        }else{
+            ary_u16[i+position] = '0x'+(list[i].replace(/higth2/,hex((higth2.slice(1,2)+higth2.slice(0,1)))));            
+        }
+    }else if(list[i].match(/higth3/)){
+        if(higth3.length == 1){        
+            ary_u16[i+position] = '0x'+(list[i].replace(/higth3/,'20'+hex(higth3))); 
+        }else{
+            ary_u16[i+position] = '0x'+(list[i].replace(/higth3/,hex((higth3.slice(1,2)+higth3.slice(0,1)))));            
+        }
+    }else{
+        if (nextHexChange == true){
+            ary_u16[i+position] = '0x0a20';
+            nextHexChange = false
+            nextHexiGnore = true
+        }else if(nextHexiGnore == true){
+            position -= 1
+            nextHexiGnore = false
+        }else if(nextHexChangeOne == true){
+            ary_u16[i+position] = '0x200a';
+            nextHexChangeOne = false
+        }
+        else{
+            ary_u16[i+position] = '0x'+list[i];
+            }
+    pos += ary_u16.BYTES_PER_ELEMENT;
+    }
+}
+
+	// Uint8Array オブジェクトを作成する
+	var ary_u8 = new Uint16Array( ary_buffer );
+
+    var blob = new Blob([ary_u8], {type: "application/octet-binary"}); // バイナリデータを作ります。
+
+    // IEか他ブラウザかの判定
+    if(window.navigator.msSaveBlob)
+    {
+        // IEなら独自関数を使います。
+        window.navigator.msSaveBlob(blob, "level.dat");
+    } else {
+        // それ以外はaタグを利用してイベントを発火させます
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.target = '_blank';
+        a.download = 'level.dat';
+        a.click();
+    }
+}
+}
+
+    //http://webkatu.com/a-download-on-ie/ より引用
+    function download() {
+        var a = document.createElement('a');
+        a.href = 'flat_world.zip';
+        a.download = 'flat_world';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+</script>
+</body>
+</html>
